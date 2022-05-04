@@ -6,5 +6,6 @@ export interface PostModel {
 }
 
 export interface PostQueryModel {
-    
+    _limit?: number,
+    _page?: number
 }

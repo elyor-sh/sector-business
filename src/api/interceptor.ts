@@ -6,6 +6,7 @@ const baseURL = process.env.REACT_APP_API_URI
 export const instance = axios.create({
     baseURL: baseURL,
     timeout: 30000,
+    withCredentials: true,
     headers: {
         'Accept': 'application/json',
         'Access-Control-Allow-Origin': '*',

@@ -11,7 +11,7 @@ interface IState {
 const initialState: IState = {
     posts: [],
     count: 0,
-    page: 0
+    page: 1
 }
 
 
@@ -21,7 +21,7 @@ export const postSlice = createSlice({
     reducers: {
         postsFetch: (state, action) => {
            state.posts = action.payload.data
-           state.count = action.payload.headers['x-total-count']
+           state.count = +action.payload.headers['x-total-count']
         },
         setPage: (state, action) => {
             state.page = action.payload
