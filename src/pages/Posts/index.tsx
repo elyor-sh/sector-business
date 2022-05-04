@@ -4,14 +4,20 @@ import {useAppSelector} from "../../hooks/useAppSelector";
 import {useAppDispatch} from "../../hooks/useAppDispatch";
 import {fetchPostsService} from "../../services/post.service";
 import {PostQueryModel} from "../../model/post.model";
+import {Loading} from "../../components/Loading";
+import {postSlice} from "../../store/reducers/post.reducer";
 
 const Posts = () => {
 
-    const {posts, count, page} = useAppSelector(state => state.postReducer)
+    const {posts, count, page, loading} = useAppSelector(state => state.postReducer)
 
     const dispatch = useAppDispatch()
 
     const navigate = useNavigate()
+
+    const handleCloseLoading = () => {
+        dispatch(postSlice.actions.setLoading(false))
+    }
 
     useEffect(() => {
 
@@ -25,13 +31,24 @@ const Posts = () => {
         })();
 
         navigate(`?page=${page}`)
+
     }, [page])
+
 
     return (
         <>
-            {JSON.stringify(posts, null, 2)}
+            {
+                loading
+                    ?
+                    <Loading
+                        open={loading}
+                        handleClose={handleCloseLoading}
+                    />
+                    :
+                    <pre>{JSON.stringify(posts, null, 2)}</pre>
+            }
         </>
     );
 };
 
-export { Posts };
+export {Posts};
