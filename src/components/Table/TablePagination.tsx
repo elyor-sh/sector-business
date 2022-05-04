@@ -32,6 +32,9 @@ const StyledPagination = styled(Pagination)(() => ({
     '& button.Mui-selected': {
         color: '#7EBC3C',
         background: 'transparent'
+    },
+    '& button.MuiPaginationItem-previousNext': {
+        display: 'none'
     }
 }))
 

@@ -7,6 +7,7 @@ import {PostQueryModel} from "../../model/post.model";
 import {Loading} from "../../components/Loading";
 import {postSlice} from "../../store/reducers/post.reducer";
 import {TableCustom} from "../../components/Table";
+import {Form} from "../../components/Form";
 
 const Posts = () => {
 
@@ -52,6 +53,7 @@ const Posts = () => {
 
     return (
         <>
+            <Form />
             <TableCustom
                 page={page}
                 setPage={(p) => setPage(p)}
