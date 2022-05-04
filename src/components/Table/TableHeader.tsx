@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
 import {Box, styled, TableCell, TableHead, TableRow, TableSortLabel} from "@mui/material";
 import {visuallyHidden} from "@mui/utils";
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import {IHeadCells, IOrder} from "./types";
 
 interface TableHeaderProps {
@@ -19,6 +20,19 @@ const StyledTableCell = styled(TableCell)(() => ({
     '&:hover, &:hover span,  & span.Mui-active, &:hover svg, & span.Mui-active svg.MuiTableSortLabel-icon': {
         color: '#fff',
     }
+}))
+
+const StyledSortLabel = styled(TableSortLabel)(() => ({
+    '& svg.MuiTableSortLabel-icon': {
+        display: 'none'
+    }
+}))
+
+const StyledArrow = styled(KeyboardArrowDownIcon)(() => ({
+    color: '#fff',
+    marginLeft: '25px',
+    fontWeight: 300,
+    fontSize: '1rem'
 }))
 
 const TableHeader:FC<TableHeaderProps> = (props) => {
@@ -41,18 +55,19 @@ const TableHeader:FC<TableHeaderProps> = (props) => {
                             padding={headCell.disablePadding ? 'none' : 'normal'}
                             sortDirection={orderBy === headCell.label ? order : false}
                         >
-                            <TableSortLabel
+                            <StyledSortLabel
                                 active={orderBy === headCell.id}
                                 direction={orderBy === headCell.id ? order : 'asc'}
                                 onClick={createSortHandler(headCell.id)}
                             >
                                 {headCell.label}
+                                <StyledArrow onClick={createSortHandler(headCell.id)}/>
                                 {orderBy === headCell.id ? (
                                     <Box component="span" sx={visuallyHidden}>
                                         {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
                                     </Box>
                                 ) : null}
-                            </TableSortLabel>
+                            </StyledSortLabel>
                         </StyledTableCell>
                     )
                 })}
