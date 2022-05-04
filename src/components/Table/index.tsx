@@ -28,8 +28,6 @@ const TableCustom: FC<TableCustomProps> = ({data, headCells, rowCells, page, set
         const isAsc = orderBy === property && order === 'asc';
         setOrder(isAsc ? 'desc' : 'asc');
         setOrderBy(property);
-
-        console.log(property)
     };
 
 
